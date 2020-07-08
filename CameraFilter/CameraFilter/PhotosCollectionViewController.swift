@@ -13,18 +13,21 @@ import RxSwift
 private let reuseIdentifier = "Cell"
 
 class PhotosCollectionViewController: UICollectionViewController {
+    
     //MARK: - Properties
+    
     private var images = [PHAsset]()
     private let selectedPhotoSubject = PublishSubject<UIImage>()
-    
     var selectedPhoto: Observable<UIImage> {
         return selectedPhotoSubject.asObservable()
     }
     
     //MARK: -IBoutlets
+    
     @IBOutlet weak var imageView: UIImageView!
     
     //MARK: - Lifecycle methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
