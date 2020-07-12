@@ -74,13 +74,27 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="dI1-cq-Xx1">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="dI1-cq-Xx1" customClass="PhotoCell" customModule="CameraFilter" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="sUI-Pg-x8p">
                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Ym-IR-Apn">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="5Ym-IR-Apn" secondAttribute="bottom" id="GO9-JC-9fn"/>
+                                        <constraint firstAttribute="trailing" secondItem="5Ym-IR-Apn" secondAttribute="trailing" id="T4B-BK-rg6"/>
+                                        <constraint firstItem="5Ym-IR-Apn" firstAttribute="leading" secondItem="sUI-Pg-x8p" secondAttribute="leading" id="ahg-0X-wHm"/>
+                                        <constraint firstItem="5Ym-IR-Apn" firstAttribute="top" secondItem="sUI-Pg-x8p" secondAttribute="top" id="dD2-1e-CuD"/>
+                                    </constraints>
                                 </collectionViewCellContentView>
+                                <connections>
+                                    <outlet property="imageView" destination="5Ym-IR-Apn" id="SIG-aG-9vd"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>

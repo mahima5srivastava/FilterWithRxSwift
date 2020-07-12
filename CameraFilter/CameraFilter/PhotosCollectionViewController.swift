@@ -12,18 +12,30 @@ import Photos
 private let reuseIdentifier = "Cell"
 
 class PhotosCollectionViewController: UICollectionViewController {
-
+    //MARK: - Variables
+    private var images = [PHAsset]()
+    
+    @IBOutlet weak var imageView: UIImageView!
+    //MARK: - Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         populatePhotos()
     }
+    //MARK: - Private methods
     
     private func populatePhotos() {
-        PHPhotoLibrary.requestAuthorization {status in
+        PHPhotoLibrary.requestAuthorization {[weak self] status in
             if status == .authorized {
-                //access photos
+                let assets = PHAsset.fetchAssets(with: PHAssetMediaType.image, options: nil)
+                assets.enumerateObjects { (object, count, stop) in
+                    self?.images.append(object)
+                }
+            }
+            self?.images.reverse()
+            DispatchQueue.main.async {
+                self?.collectionView.reloadData()
             }
             
         }
@@ -31,21 +43,22 @@ class PhotosCollectionViewController: UICollectionViewController {
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 0
+        return self.images.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
-        // Configure the cell
-    
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as? PhotoCell else {return UICollectionViewCell()}
+        let asset = self.images[indexPath.item]
+        PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: 200,height: 200), contentMode: .aspectFit, options: .none, resultHandler: { image, _ in
+            DispatchQueue.main.async {
+                cell.imageView.image = image
+            }
+        })
         return cell
     }
 
