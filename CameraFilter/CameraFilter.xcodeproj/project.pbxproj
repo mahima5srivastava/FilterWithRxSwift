@@ -22,6 +22,7 @@
 		D45C0D7124C315E000C3C826 /* PhotosCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C0D7024C315E000C3C826 /* PhotosCollectionViewController.swift */; };
 		D45C0D7324C315E000C3C826 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C0D7224C315E000C3C826 /* FilterViewController.swift */; };
 		D45C0D7524C315E000C3C826 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C0D7424C315E000C3C826 /* PhotoCell.swift */; };
+		D45C0D7724C315E000C3C826 /* FilterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C0D7624C315E000C3C826 /* FilterService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		D45C0D7024C315E000C3C826 /* PhotosCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewController.swift; sourceTree = "<group>"; };
 		D45C0D7224C315E000C3C826 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		D45C0D7424C315E000C3C826 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		D45C0D7624C315E000C3C826 /* FilterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterService.swift; sourceTree = "<group>"; };
 		FD97D8C79FA2BF630859C524 /* Pods-CameraFilter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CameraFilter.release.xcconfig"; path = "Target Support Files/Pods-CameraFilter/Pods-CameraFilter.release.xcconfig"; sourceTree = "<group>"; };
 		FFA673FAC35B950E037FA156 /* Pods_CameraFilterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CameraFilterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -158,6 +160,7 @@
 				D45C0D7024C315E000C3C826 /* PhotosCollectionViewController.swift */,
 				D45C0D7224C315E000C3C826 /* FilterViewController.swift */,
 				D45C0D7424C315E000C3C826 /* PhotoCell.swift */,
+				D45C0D7624C315E000C3C826 /* FilterService.swift */,
 			);
 			path = CameraFilter;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				D45C0D4824C315DF00C3C826 /* CameraFilter.xcdatamodeld in Sources */,
 				D45C0D4224C315DF00C3C826 /* ViewController.swift in Sources */,
 				D45C0D3E24C315DF00C3C826 /* AppDelegate.swift in Sources */,
+				D45C0D7724C315E000C3C826 /* FilterService.swift in Sources */,
 				D45C0D7124C315E000C3C826 /* PhotosCollectionViewController.swift in Sources */,
 				D45C0D4024C315DF00C3C826 /* SceneDelegate.swift in Sources */,
 			);

@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     //MARK: - IBOutlet
     
     @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var filterButton: UIButton!
     
     //MARK: - Properties
     let disposeBag = DisposeBag()
@@ -29,9 +30,27 @@ class ViewController: UIViewController {
         if let navVc = segue.destination as? UINavigationController,
             let photoVc = navVc.viewControllers.first as? PhotosCollectionViewController {
             photoVc.selectedPhoto.subscribe (onNext: {[weak self] photo in
-                self?.photoImageView.image = photo
+                DispatchQueue.main.async {
+                    self?.updateUI(with: photo)
+                }
                 }).disposed(by: disposeBag)
         }
+    }
+    
+    private func updateUI(with image: UIImage) {
+        self.photoImageView.image = image
+        self.filterButton.isHidden = false
+    }
+    
+    @IBAction func filterAction(_ sender: Any) {
+        guard let sourceImage = self.photoImageView.image else {return}
+        FilterService().applyFilter(to: sourceImage) {[weak self] image in
+            DispatchQueue.main.async {
+                self?.photoImageView.image = image
+            }
+            
+        }
+ 
     }
 }
 
