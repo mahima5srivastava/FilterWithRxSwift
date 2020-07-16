@@ -17,15 +17,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var filterButton: UIButton!
     
     //MARK: - Properties
+    
     let disposeBag = DisposeBag()
     
     //MARK:- Overridden Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let navVc = segue.destination as? UINavigationController,
             let photoVc = navVc.viewControllers.first as? PhotosCollectionViewController {
@@ -33,24 +33,26 @@ class ViewController: UIViewController {
                 DispatchQueue.main.async {
                     self?.updateUI(with: photo)
                 }
-                }).disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
         }
     }
+    
+    //MARK:- Private methods
     
     private func updateUI(with image: UIImage) {
         self.photoImageView.image = image
         self.filterButton.isHidden = false
     }
     
+    //MARK:- IBAction
+    
     @IBAction func filterAction(_ sender: Any) {
         guard let sourceImage = self.photoImageView.image else {return}
-        FilterService().applyFilter(to: sourceImage) {[weak self] image in
+        FilterService().applyfilter(to: sourceImage).subscribe(onNext: { filteredImage in
             DispatchQueue.main.async {
-                self?.photoImageView.image = image
+                self.photoImageView.image = filteredImage
             }
-            
-        }
- 
+        }).disposed(by: disposeBag)
     }
 }
 
